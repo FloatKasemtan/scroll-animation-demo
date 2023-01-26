@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, ReactHTMLElement, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import useOnScreen from "./hooks/IsOnScreen";
 
@@ -23,10 +23,6 @@ const App: React.FC = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
   }, [isIntersecting]);
-
-  useEffect(() => {
-    console.log("isUpper", isUpper);
-  }, [isUpper]);
 
   const handleScroll = () => {
     if (isIntersecting) {
