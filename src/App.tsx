@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import useImagePreloader from "./hooks/useImagePreloader";
 import useOnScreen from "./hooks/useOnScreen";
-import Image from "/static/images/image-set/ezgif-frame-001.jpg";
 
 const App: React.FC = () => {
   const FRAME_COUNT: number = 200;
