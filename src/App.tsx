@@ -40,7 +40,6 @@ const App: React.FC = () => {
       const scrollTop = document.documentElement.scrollTop - window.innerHeight;
       const maxScrollTop =
         container.current?.scrollHeight!! - window.innerHeight;
-      console.log(maxScrollTop);
 
       const scrollFraction = scrollTop / maxScrollTop;
 
