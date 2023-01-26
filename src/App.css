@@ -7,8 +7,21 @@ body {
   background: #eae0da;
 }
 
+.author {
+  position: fixed;
+  top: 0;
+  right: 50%;
+  transform: translate(50%, 0);
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: #eae0da;
+  background: #2d3436;
+  z-index: 1;
+}
+
 .content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-weight: bold;
@@ -20,7 +33,7 @@ body {
 
 .scroll-video {
   width: 100%;
-  height: 500vh;
+  height: 1000vh;
 }
 
 .image {

@@ -1,21 +1,19 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
-import useOnScreen from "./hooks/IsOnScreen";
+import useImagePreloader from "./hooks/useImagePreloader";
+import useOnScreen from "./hooks/useOnScreen";
+import Image from "/static/images/image-set/ezgif-frame-001.jpg";
 
 const App: React.FC = () => {
   const FRAME_COUNT: number = 200;
 
   const [currentIndex, setCurrentIndex] = useState<number>(1);
-
+  const preloadSrcList: string[] = [];
   const container = useRef<HTMLDivElement>(null);
   const isIntersecting = useOnScreen(container);
   const [fullyIntersecting, setFullyIntersecting] = useState(false);
   const [isUpper, setisUpper] = useState(true);
-
-  const currentFrame = (index: number) =>
-    `/static/images/image-set/ezgif-frame-${index
-      .toString()
-      .padStart(3, "0")}.jpg`;
+  const { imagesPreloaded } = useImagePreloader(preloadSrcList);
 
   useEffect(() => {
     handleScroll();
@@ -52,11 +50,25 @@ const App: React.FC = () => {
         setCurrentIndex(frameIndex + 1);
     }
   };
+  const currentFrame = (index: number) =>
+    `/static/images/image-set/ezgif-frame-${index
+      .toString()
+      .padStart(3, "0")}.jpg`;
+
+  for (let i = 1; i <= FRAME_COUNT; i++) {
+    preloadSrcList.push(currentFrame(i));
+  }
 
   return (
     <div className="App">
       <div className="content">
-        <div className="title">Scroll Down</div>
+        <div className="author">
+          Made with love by{" "}
+          <a href="https://github.com/FloatKasemtan">FloatyKT</a>
+        </div>
+        <div className="title">
+          {imagesPreloaded ? "Scroll Down" : "Please wait"}
+        </div>
       </div>
       <div
         ref={container}
