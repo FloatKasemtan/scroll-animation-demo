@@ -13,7 +13,7 @@ const App: React.FC = () => {
   const [isUpper, setisUpper] = useState(true);
 
   const currentFrame = (index: number) =>
-    `/src/assets/image-set/ezgif-frame-${index
+    `/static/images/image-set/ezgif-frame-${index
       .toString()
       .padStart(3, "0")}.jpg`;
 
