@@ -7,18 +7,19 @@ const App: React.FC = () => {
   const FRAME_COUNT: number = 200;
 
   const [currentIndex, setCurrentIndex] = useState<number>(1);
-  const preloadSrcList: string[] = [];
   const container = useRef<HTMLDivElement>(null);
   const isIntersecting = useOnScreen(container);
   const [fullyIntersecting, setFullyIntersecting] = useState(false);
   const [isUpper, setisUpper] = useState(true);
+  const [preloadSrcList, setpreloadSrcList] = useState<string[]>([]);
   const { imagesPreloaded } = useImagePreloader(preloadSrcList);
 
   useEffect(() => {
+    const images: string[] = [];
     for (let i = 1; i <= FRAME_COUNT; i++) {
-      preloadSrcList.push(currentFrame(i));
+      images.push(currentFrame(i));
     }
-    handleScroll();
+    setpreloadSrcList(images);
   }, []);
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
