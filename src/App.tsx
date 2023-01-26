@@ -15,6 +15,9 @@ const App: React.FC = () => {
   const { imagesPreloaded } = useImagePreloader(preloadSrcList);
 
   useEffect(() => {
+    for (let i = 1; i <= FRAME_COUNT; i++) {
+      preloadSrcList.push(currentFrame(i));
+    }
     handleScroll();
   }, []);
   useEffect(() => {
@@ -53,10 +56,6 @@ const App: React.FC = () => {
     `/static/images/image-set/ezgif-frame-${index
       .toString()
       .padStart(3, "0")}.jpg`;
-
-  for (let i = 1; i <= FRAME_COUNT; i++) {
-    preloadSrcList.push(currentFrame(i));
-  }
 
   return (
     <div className="App">
